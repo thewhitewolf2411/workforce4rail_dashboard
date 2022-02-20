@@ -1,5 +1,5 @@
 import React from "react";
-import ObjectsContainer from "../../../app/common/ObjectsContainer";
+import PageHeader from "../../../app/common/PageHeader";
 
 function Clients() {
 
@@ -27,15 +27,9 @@ function Clients() {
   ]
 
   return (
-    <>
-      <div className="left__elements">
-        <ObjectsContainer data={DUMMY_CLIENTS}/>
-      </div>
-      <div className="right__elements">
-        <ObjectsContainer data={DUMMY_CLIENTS}/>
-        <ObjectsContainer data={DUMMY_CLIENTS}/>
-      </div>
-    </>
+    <div className='client__list'>
+      <PageHeader />
+    </div>
   );
 }
 

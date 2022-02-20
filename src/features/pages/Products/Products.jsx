@@ -1,11 +1,12 @@
 import React from "react";
+import PageHeader from "../../../app/common/PageHeader";
 
 function Products() {
 
   return (
-    <>
-        Products
-    </>
+    <div className='products__list'>
+      <PageHeader />
+    </div>
   );
 }
 

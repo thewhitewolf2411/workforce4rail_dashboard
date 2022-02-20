@@ -1,11 +1,12 @@
 import React from "react";
+import PageHeader from "../../../app/common/PageHeader";
 
 function Invoices() {
 
   return (
-    <>
-        Invoices
-    </>
+    <div className='invoices__list'>
+      <PageHeader />
+    </div>
   );
 }
 

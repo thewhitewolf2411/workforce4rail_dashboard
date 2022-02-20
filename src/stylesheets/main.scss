@@ -10,6 +10,12 @@
 
 @import './components/objectContainer.scss';
 
+@import './components/button.scss';
+
+@import './components/input.scss';
+
+@import './components/pagecontainer.scss';
+
 
 body, html{
     padding: 0;
@@ -24,7 +30,7 @@ body, html{
     font-family: open-sans;
 }
 
-span, p, li, div{
+span, p, li, div, input{
     font-size: 12pt;
     line-height: 14pt;
 

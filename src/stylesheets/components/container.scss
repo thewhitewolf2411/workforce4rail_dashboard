@@ -3,18 +3,5 @@
     left: 280px;
     padding: 30px;
     max-width: calc(100vw - 280px);
-
-    display: grid;
-    grid-template-columns: auto auto;
-
-    .left__elements{
-        height: 100%;
-        max-height: calc(100vh - 140px);
-    }
-
-    .right__elements{
-        display: grid;
-        grid-template-rows: auto auto;
-        max-height: calc(100vh - 140px);
-    }
+    gap: 1em;
 }

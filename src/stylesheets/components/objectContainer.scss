@@ -1,0 +1,12 @@
+@import './listElement.scss';
+
+.object__container{
+    width: 100%;
+    background: linear-gradient(180deg, #935867 16.34%, #4E3C4C 100%);
+    border: 2px solid #1D1D1D;
+    box-sizing: border-box;
+    border-radius: 20px;
+
+    padding: 20px;
+    height: 100%;
+}

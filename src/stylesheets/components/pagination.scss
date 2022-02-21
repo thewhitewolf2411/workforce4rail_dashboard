@@ -1,0 +1,39 @@
+.page__selector{
+    nav{
+        display: flex;
+    }
+
+    .pagination{
+        list-style: none;
+        padding: 0;
+
+        display: flex;
+
+        .page-item{
+            
+            .page-link{
+                border: 1px solid $primary-orange;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                height: 30px;
+                width: 30px;
+                text-decoration: none;
+                color: $primary-orange;
+            }
+
+            .page-link:hover{
+                cursor: pointer
+            }
+        }
+
+        .page-item__active{
+            .page-link{
+                border: 1px solid $primary-orange;
+                color: $primary-orange;
+                background: $background-color;
+            }
+        }
+    }
+}
+

@@ -15,8 +15,16 @@ function Button(props) {
 
     if(props.delete){
         return(
-            <div className='btn btn-delete' onClick={props.action}>
+            <div className={props.disabled ? 'btn btn-delete' : 'btn btn-delete btn-delete-active'} onClick={props.disabled ? null : props.action}>
                 <p>Delete</p>
+            </div>
+        );
+    }
+
+    if(props.view){
+        return(
+            <div className={props.disabled ? 'btn btn-view' : 'btn btn-view btn-view-active'} onClick={props.disabled ? null : props.action}>
+                <p>View</p>
             </div>
         );
     }

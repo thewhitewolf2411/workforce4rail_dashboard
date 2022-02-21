@@ -24,4 +24,32 @@
     border: 1px solid $white-color;
     background: $background-color;
     color: $white-color;
+    cursor: not-allowed;
+}
+
+.btn-delete-active{
+    border: 1px solid $white-color;
+    background: $primary-orange;
+    color: $white-color;
+}
+
+.btn-delete-active:hover{
+    cursor: pointer;
+}
+
+.btn-view{
+    border: 1px solid $white-color;
+    background: $background-color;
+    color: $white-color;
+    cursor: not-allowed;
+}
+
+.btn-view-active{
+    border: 1px solid $white-color;
+    background: $primary-orange;
+    color: $white-color;
+}
+
+.btn-view-active:hover{
+    cursor: pointer;
 }

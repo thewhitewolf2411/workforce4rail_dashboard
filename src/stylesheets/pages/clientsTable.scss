@@ -1,0 +1,56 @@
+.table__controller{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    padding: 1em;
+    margin-top: 2em;
+    border-radius: 10px;
+
+    background-color: $black-color;
+}
+
+.clients-table__container{
+    padding: 1em;
+    border-radius: 10px;
+    background: $black-color;
+    margin-top: 2em;
+
+    table {
+        border-collapse: collapse;
+        width: 100%;
+
+        thead{
+            tr{
+                th{
+                    text-align: left;
+                    padding: 8px;
+                    border: 1px solid $white-color;
+                    color: $white-color;
+                    background-color: $primary-orange;
+                }
+            }
+        }
+
+        tbody{
+            tr{
+                td{
+                    padding: 8px;
+                    border: 1px solid $white-color;
+                    color: $white-color;
+                    background-color: $primary-orange;
+                }
+            }
+
+            tr:hover{
+                cursor: pointer;
+            }
+
+            tr.selected{
+                td{
+                    background-color: $background-color;
+                }
+            }
+        }
+    }
+}

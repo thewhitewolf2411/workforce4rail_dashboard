@@ -1,5 +1,5 @@
 .page__header{
-    padding: 20px;
+    padding: 1em;
     background-color: $black-color;
     border-radius: 10px;
 
@@ -9,7 +9,7 @@
 
     .buttons{
         display: grid;
-        grid-template-columns: auto auto;
+        grid-template-columns: auto auto auto;
         gap: 2em;
     }
 }

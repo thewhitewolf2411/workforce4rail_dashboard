@@ -12,14 +12,14 @@
         .page-item{
             
             .page-link{
-                border: 1px solid $primary-orange;
+                border: 1px solid $font-color;
                 display: flex;
                 align-items: center;
                 justify-content: center;
                 height: 30px;
                 width: 30px;
                 text-decoration: none;
-                color: $primary-orange;
+                color: $font-color;
             }
 
             .page-link:hover{
@@ -29,8 +29,8 @@
 
         .page-item__active{
             .page-link{
-                border: 1px solid $primary-orange;
-                color: $primary-orange;
+                border: 1px solid $btn-primary;
+                color: $btn-primary;
                 background: $background-color;
             }
         }

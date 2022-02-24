@@ -1,6 +1,6 @@
 .btn{
-    width: 200px;
-    height: 50px;
+    width: 120px;
+    height: 44px;
     border-radius: 5px;
 
     display: flex;
@@ -15,21 +15,26 @@
 }
 
 .btn-new{
-    border: 1px solid $white-color;
-    background: $primary-orange;
+    border: 1px solid $btn-primary;
+    background: $btn-primary;
     color: $white-color;
 }
 
+.btn-new:hover{
+    background: $btn-primary-hover;
+    transition: 0.3s linear;
+}
+
 .btn-delete{
-    border: 1px solid $white-color;
+    border: 1px solid $border-color;
     background: $background-color;
-    color: $white-color;
+    color: $border-color;
     cursor: not-allowed;
 }
 
 .btn-delete-active{
     border: 1px solid $white-color;
-    background: $primary-orange;
+    background: $primary-warning;
     color: $white-color;
 }
 
@@ -38,18 +43,20 @@
 }
 
 .btn-view{
-    border: 1px solid $white-color;
+    border: 1px solid $border-color;
     background: $background-color;
-    color: $white-color;
+    color: $border-color;
     cursor: not-allowed;
 }
 
 .btn-view-active{
     border: 1px solid $white-color;
-    background: $primary-orange;
+    background: $btn-primary;
     color: $white-color;
 }
 
 .btn-view-active:hover{
+    background: $btn-primary-hover;
+    transition: 0.3s linear;
     cursor: pointer;
 }

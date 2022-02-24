@@ -65,8 +65,10 @@ function Clients() {
   return (
     <div className='client__list'>
       <PageHeader viewClient={handleViewClick} deleteClient={handleDeleteClick} buttonsDisabled={rowSelected === 0 ? true : false}/>
-      <TableController numberOfResults={numberOfResults} page={page} setNumberOfResults={setNumberOfResults} setPage={setPage} />
+      
       <Table headers={TABLE_HEADERS} data={DUMMY_CLIENTS} setRowSelected={handleSelect} rowSelected={rowSelected}/>
+
+      <TableController numberOfResults={numberOfResults} page={page} setNumberOfResults={setNumberOfResults} setPage={setPage} />
     </div>
   );
 }

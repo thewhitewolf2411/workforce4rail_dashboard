@@ -3,7 +3,7 @@
     top: 0;
     left: 0;
     height: 100%;
-    max-width: 280px;
+    max-width: 220px;
     width: 100%;
     background-color: $black-color;
 
@@ -36,8 +36,10 @@
         align-items: center;
 
         .sidebar-element__image{
-            width: 30px;
-            height: 30px;
+            width: 25px;
+            height: 25px;
+            min-width: 25px;
+            min-height: 25px;
 
             img{
                 width: 100%;

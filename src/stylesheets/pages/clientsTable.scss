@@ -4,17 +4,17 @@
     align-items: center;
 
     padding: 1em;
-    margin-top: 2em;
-    border-radius: 10px;
+    margin-top: 1em;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
 
-    background-color: $black-color;
+    background-color: $white-color;
 }
 
 .clients-table__container{
-    padding: 1em;
+    padding-top: 10px;
+    padding-bottom: 10px;
     border-radius: 10px;
-    background: $black-color;
-    margin-top: 2em;
 
     table {
         border-collapse: collapse;
@@ -24,22 +24,28 @@
             tr{
                 th{
                     text-align: left;
-                    padding: 8px;
-                    border: 1px solid $white-color;
-                    color: $white-color;
-                    background-color: $primary-orange;
+                    padding: 1em;
+                    padding-top: 12px;
+                    padding-bottom: 12px;
+                    color: $font-color;
+                    font-family: OpenSansSemiBold;
                 }
             }
         }
 
         tbody{
             tr{
+                border-bottom: 1px solid $background-color;
                 td{
-                    padding: 8px;
-                    border: 1px solid $white-color;
-                    color: $white-color;
-                    background-color: $primary-orange;
+                    padding: 1em;
+                    color: $font-color;
+                    background: $white-color;
+                    font-family: OpenSansRegular;
                 }
+            }
+
+            tr:last-child{
+                border: none;
             }
 
             tr:hover{

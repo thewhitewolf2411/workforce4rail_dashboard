@@ -1,17 +1,17 @@
 .input-container{
-    max-width: 220px;
+    max-width: 180px;
 
     .input__default{
         width: 100%;
-        padding: 8px 16px;
-        border: 2px solid $black-color;
+        padding: 5px 16px;
+        border: none;
         border-radius: 5px;
-        height: 50px;
-        background: $white-color;
+        height: 44px;
+        background-color: $background-color;
     }
 
     .input__default::placeholder{
         font-size: 12pt;
-        color: $primary-orange;
+        color: $font-color;
     }
 }

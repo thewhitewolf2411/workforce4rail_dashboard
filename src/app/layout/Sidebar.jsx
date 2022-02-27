@@ -23,9 +23,9 @@ function Sidebar() {
             </div>
             <ul className="sidebar-list">
                 <SidebarElement location="Dashboard" imageInactive={dashboardImageInctive} imageActive={dashboardImageActive} active={location.pathname.indexOf('/dashboard') > -1} link="/dashboard"/>
-                <SidebarElement location="Invoices" imageInactive={invoicesImageInctive} imageActive={invoicesImageActive} active={location.pathname.indexOf('/invoices') > -1} link="/invoices"/>
-                <SidebarElement location="Products" imageInactive={productsImageInctive} imageActive={productsImageActive} active={location.pathname.indexOf('/products') > -1} link="/products"/>
-                <SidebarElement location="Clients" imageInactive={clientsImageInctive} imageActive={clientsImageActive} active={location.pathname.indexOf('/clients') > -1} link="/clients"/>
+                <SidebarElement location="Invoices" imageInactive={invoicesImageInctive} imageActive={invoicesImageActive} active={location.pathname.indexOf('/invoices') > -1 || location.pathname.indexOf('/invoice') > -1} link="/invoices"/>
+                <SidebarElement location="Products" imageInactive={productsImageInctive} imageActive={productsImageActive} active={location.pathname.indexOf('/products') > -1 || location.pathname.indexOf('/product') > -1} link="/products"/>
+                <SidebarElement location="Clients" imageInactive={clientsImageInctive} imageActive={clientsImageActive} active={location.pathname.indexOf('/clients') > -1 || location.pathname.indexOf('/client') > -1} link="/clients"/>
             </ul>
         </div>
     );

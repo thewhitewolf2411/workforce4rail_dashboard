@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import PageHeader from "../../../app/common/PageHeader";
-import Table from "./table/Table";
-import TableController from "./table/TableController";
+import Table from "../../../app/common/table/Table";
+import TableController from "../../../app/common/table/TableController";
 
 function Clients() {
 
@@ -66,7 +66,7 @@ function Clients() {
     <div className='client__list'>
       <PageHeader viewClient={handleViewClick} deleteClient={handleDeleteClick} buttonsDisabled={rowSelected === 0 ? true : false}/>
       
-      <Table headers={TABLE_HEADERS} data={DUMMY_CLIENTS} setRowSelected={handleSelect} rowSelected={rowSelected}/>
+      <Table headers={TABLE_HEADERS} clients={DUMMY_CLIENTS} setRowSelected={handleSelect} rowSelected={rowSelected}/>
 
       <TableController numberOfResults={numberOfResults} page={page} setNumberOfResults={setNumberOfResults} setPage={setPage} />
     </div>

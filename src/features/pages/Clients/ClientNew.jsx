@@ -30,6 +30,10 @@ function ClientNew() {
       description: {
         value: "",
         isValid: false,
+      },
+      client_id: {
+        value: "",
+        isValid: false,
       }
     },
     false
@@ -80,7 +84,7 @@ function ClientNew() {
         onInput={inputHandler}
       />
       <Input
-        id="id"
+        id="client_id"
         element="input"
         type="text"
         label="Client ID"

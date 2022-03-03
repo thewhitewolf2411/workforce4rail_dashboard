@@ -80,6 +80,15 @@ function ClientNew() {
         onInput={inputHandler}
       />
       <Input
+        id="id"
+        element="input"
+        type="text"
+        label="Client ID"
+        validators={[VALIDATOR_EMAIL()]}
+        errorText="Please enter a valid email address."
+        onInput={inputHandler}
+      />
+      <Input
         id="description"
         label="Client Description"
         validators={[VALIDATOR_REQUIRE()]}

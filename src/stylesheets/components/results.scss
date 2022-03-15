@@ -12,6 +12,42 @@
 
         option{
             cursor: pointer;
+            font-family: OpenSansRegular !important;
         }
+    }
+}
+
+.form-control{
+    select{
+        width: 100%;
+        padding: 8px 12px;
+        outline: none;
+        cursor: pointer;
+
+        background: $background-color;
+        color: $btn-primary;
+        border: 1px solid $btn-primary;
+        border-radius: 5px;
+
+        option{
+            cursor: pointer;
+            font-family: OpenSansRegular !important;
+        }
+    }
+}
+
+.form-control__center{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.form-control__center:hover{
+    img{
+        scale: 1.1;
+        transition: 0.2s linear;
+        cursor: pointer;
+        
     }
 }

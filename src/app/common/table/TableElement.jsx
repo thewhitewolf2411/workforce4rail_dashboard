@@ -23,7 +23,6 @@ function TableElement(props) {
   }
 
   if(props.type === 'products'){
-    console.log(props);
     return (
       <tr onClick={() => props.setRowSelected(props.id)} id={props.id} className={props.rowSelected === props.id ? 'selected' : null}>
         <td>{props.productName}</td>
@@ -39,7 +38,6 @@ function TableElement(props) {
       <tr onClick={() => props.setRowSelected(props.id)} id={props.id} className={props.rowSelected === props.id ? 'selected' : null}>
         <td>{props.clientName}</td>
         <td>{props.invoiceDate}</td>
-        <td>{props.paymentDeadline}</td>
         <td>{props.isPaid}</td>
         <td>{props.invoiceTotal}</td>
         <td>{props.invoicedServices}</td>

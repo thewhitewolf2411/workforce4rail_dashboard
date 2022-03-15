@@ -1,14 +1,20 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
+import ActivityIndicator from "../../../app/common/ActivityIndicator";
+import ErrorModal from "../../../app/common/ErrorModal";
 import PageHeader from "../../../app/common/PageHeader";
 import Table from "../../../app/common/table/Table";
 import TableController from "../../../app/common/table/TableController";
+import { useHttpClient } from "../../../app/util/CustomHooks";
 
 function Invoices() {
 
   const [numberOfResults, setNumberOfResults] = useState(10);
   const [page, setPage] = useState(1);
+  const [numberOfPages, setNumberOfPages] = useState(1);
   const [rowSelected, setRowSelected] = useState(0);
+  const [invoices, setInvoices] = useState([]);
+  const { isLoading, error, sendRequest, clearError } = useHttpClient();
 
   const navigate = useNavigate();
 
@@ -26,61 +32,25 @@ function Invoices() {
   }
 
   const handleDeleteClick = () => {
-    console.log(rowSelected);
   }
 
-  const DUMMY_INVOICES = [
-    {
-      id: 1,
-      clientName:'Client 1',
-      invoiceDate:'19.02.2022',
-      paymentDeadline:'19.02.2022',
-      isPaid:'Yes',
-      invoiceTotal: '10000€',
-      invoicedServices: '5'
-    },
-    {
-      id: 2,
-      clientName:'Client 2',
-      invoiceDate:'19.02.2022',
-      paymentDeadline:'19.02.2022',
-      isPaid:'Yes',
-      invoiceTotal: '10000€',
-      invoicedServices: '5'
-    },
-    {
-      id: 3,
-      clientName:'Client 3',
-      invoiceDate:'19.02.2022',
-      paymentDeadline:'19.02.2022',
-      isPaid:'Yes',
-      invoiceTotal: '10000€',
-      invoicedServices: '5'
-    },
-    {
-      id: 4,
-      clientName:'Client 4',
-      invoiceDate:'19.02.2022',
-      paymentDeadline:'19.02.2022',
-      isPaid:'Yes',
-      invoiceTotal: '10000€',
-      invoicedServices: '5'
-    },
-    {
-      id: 5,
-      clientName:'Client 5',
-      invoiceDate:'19.02.2022',
-      paymentDeadline:'19.02.2022',
-      isPaid:'Yes',
-      invoiceTotal: '10000€',
-      invoicedServices: '5'
-    },
-  ];
+  useEffect(() => {
+    const fetchClients = async () => {
+      try{
+        const responseData = await sendRequest(`http://localhost:5000/api/invoices/all?numberofresults=${numberOfResults}&page=${page}`);
+
+        setInvoices(responseData.invoices);
+        setNumberOfPages(responseData.numberOfPages);
+        
+      } catch(err){}
+    }
+
+    fetchClients();
+  }, [sendRequest, numberOfResults, page]);
 
   const TABLE_HEADERS = [
     'Client Name',
     'Invoice Date',
-    'Payment deadline',
     'Is paid',
     'Invoice total',
     'Number of services'
@@ -88,11 +58,12 @@ function Invoices() {
 
   return (
     <div className='invoices__list'>
+      <ErrorModal error={error} onClear={clearError} />
       <PageHeader viewClient={handleViewClick} deleteClient={handleDeleteClick} buttonsDisabled={rowSelected === 0 ? true : false}/>
+      {isLoading && <ActivityIndicator asOverlay />}
+      {invoices.length !== 0 && <Table headers={TABLE_HEADERS} invoices={invoices} setRowSelected={handleSelect} rowSelected={rowSelected}/>}
       
-      <Table headers={TABLE_HEADERS} invoices={DUMMY_INVOICES} setRowSelected={handleSelect} rowSelected={rowSelected}/>
-      
-      <TableController numberOfResults={numberOfResults} page={page} setNumberOfResults={setNumberOfResults} setPage={setPage} />
+      <TableController numberOfResults={numberOfResults} page={page} setNumberOfResults={setNumberOfResults} setPage={setPage} numberOfPages={numberOfPages}/>
     </div>
   );
 }

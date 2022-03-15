@@ -56,6 +56,7 @@ const Input = (props) => {
         type={props.type}
         placeholder={props.placeholder}
         value={inputState.value}
+        disabled={props.disabled}
       />
     ) : (
       <textarea
@@ -64,6 +65,7 @@ const Input = (props) => {
         id={props.id}
         rows={props.rows || 3}
         value={inputState.value}
+        disabled={props.disabled}
       />
     );
 

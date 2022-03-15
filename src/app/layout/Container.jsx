@@ -1,9 +1,12 @@
-import React from "react";
+import React, { useContext } from "react";
+import { AuthContext } from "../util/AuthContext";
 
 function Container(props) {
 
+    const auth = useContext(AuthContext);
+
     return (
-        <div className="container">
+        <div className={`container ${auth.isLoggedIn ? '' : 'container-full'}`}>
             {props.children}
         </div>
     );

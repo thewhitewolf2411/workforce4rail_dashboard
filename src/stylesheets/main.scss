@@ -20,9 +20,19 @@
 
 @import './components/results.scss';
 
+@import './components/formComponent.scss';
+
+@import './components/modal.scss';
+
+@import './components/activityIndicator.scss';
+
+@import './components/backdrop.scss';
+
+@import './components/card.scss';
+
 @import './pages/clientsTable.scss';
 
-@import './components/formComponent.scss';
+@import './pages/dashboard.scss';
 
 
 body, html{
@@ -30,6 +40,11 @@ body, html{
     margin: 0;
 
     background: $background-color;
+    height: 100%;
+}
+
+html{
+    overflow-x: hidden;
 }
 
 *{
@@ -38,11 +53,11 @@ body, html{
     font-family: open-sans;
 }
 
-span, p, li, div, input{
+span, p, li, div, input, label, button, a, h1, h2, h3, h4, h5, h6, select, option{
     font-size: 12pt;
     line-height: 14pt;
 
-    font-family: OpenSansRegular;
+    font-family: OpenSansRegular !important;
 }
 
 th{
@@ -51,4 +66,10 @@ th{
 
 td{
     font-size: 10pt;
+}
+
+#root{
+    position: relative;
+    height: auto;
+    min-height: 100vh;
 }

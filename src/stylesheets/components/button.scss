@@ -17,7 +17,8 @@
 .btn-new{
     border: 1px solid $btn-primary;
     background: $btn-primary;
-    color: $white-color;
+    color: $white-color !important;
+    cursor: pointer;
 }
 
 .btn-new:hover{

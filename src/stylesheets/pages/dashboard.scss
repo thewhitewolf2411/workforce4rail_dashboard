@@ -15,13 +15,28 @@
         width: auto;
         height: auto;
 
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+
         h1{
             text-align: center;
+        }
+
+        canvas{
+            width: 400px !important;
+            height: 400px !important;
+            margin: 0 auto;
         }
     }
 
     .chart__last{
         grid-column-end: span 2;
+        canvas{
+            width: 100% !important;
+            height: 100% !important;
+        }
     }
 
 }

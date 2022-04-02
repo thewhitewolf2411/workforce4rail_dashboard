@@ -27,6 +27,7 @@ export const validate = (value, validators) => {
       isValid = isValid && value.trim().length > 0;
     }
     if (validator.type === VALIDATOR_TYPE_MINLENGTH) {
+      console.log(value.trim().length, validator.val);
       isValid = isValid && value.trim().length >= validator.val;
     }
     if (validator.type === VALIDATOR_TYPE_MAXLENGTH) {

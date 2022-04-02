@@ -54,10 +54,10 @@ function Products() {
 
   const deleteProduct = async () => {
     try{
-      const deleteResponseData = await sendRequest(`http://localhost:5000/api/products/${rowSelected}`, 'DELETE', null, { "Content-Type": "application/json"});
+      const deleteResponseData = await sendRequest(`/api/products/${rowSelected}`, 'DELETE', null, { "Content-Type": "application/json"});
       if(deleteResponseData.status === 200){
         Swal.fire('Client deleted succesfully.', '', 'success');
-        const responseData = await sendRequest(`http://localhost:5000/api/products/all?numberofresults=${numberOfResults}&page=${page}`);
+        const responseData = await sendRequest(`/api/products/all?numberofresults=${numberOfResults}&page=${page}`);
 
         setProducts(responseData.clients);
         setNumberOfPages(responseData.numberOfPages);
@@ -68,7 +68,7 @@ function Products() {
   useEffect(() => {
     const fetchProducts = async () => {
       try{
-        const responseData = await sendRequest(`http://localhost:5000/api/products/all?numberofresults=${numberOfResults}&page=${page}`);
+        const responseData = await sendRequest(`/api/products/all?numberofresults=${numberOfResults}&page=${page}`);
 
         setProducts(responseData.products);
         setNumberOfPages(responseData.numberOfPages);

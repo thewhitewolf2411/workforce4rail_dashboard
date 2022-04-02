@@ -37,7 +37,7 @@ function Invoices() {
   useEffect(() => {
     const fetchClients = async () => {
       try{
-        const responseData = await sendRequest(`http://localhost:5000/api/invoices/all?numberofresults=${numberOfResults}&page=${page}`);
+        const responseData = await sendRequest(`/api/invoices/all?numberofresults=${numberOfResults}&page=${page}`);
 
         setInvoices(responseData.invoices);
         setNumberOfPages(responseData.numberOfPages);

@@ -40,3 +40,18 @@
     }
 
 }
+
+@media only screen and (max-width: 1024px) {
+    .charts-container{
+        grid-template-columns: 100%;
+
+        .chart__single, .chart__last{
+            grid-column: 1;
+
+            canvas{
+                width: 100% !important;
+                max-height: 250px !important;
+            }
+        }
+    }
+  }

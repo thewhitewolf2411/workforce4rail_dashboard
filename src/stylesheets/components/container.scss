@@ -18,3 +18,16 @@
         align-items: center;
     }
 }
+
+@media only screen and (max-width: 1024px) {
+    .container{
+        left: 50px;
+        padding: 20px;
+        max-width: calc(100vw - 50px);
+    }
+
+    .container-full{
+        left: 0;
+        max-width: 100%;
+    }
+  }

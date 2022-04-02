@@ -68,7 +68,6 @@ const Input = (props) => {
         disabled={props.disabled}
       />
     );
-
   return (
     <div
       className={`form-control ${

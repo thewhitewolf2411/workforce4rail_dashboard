@@ -54,10 +54,10 @@ const Clients = () => {
 
   const deleteClient = async () => {
     try{
-      const deleteResponseData = await sendRequest(`http://localhost:5000/api/clients/${rowSelected}`, 'DELETE', null, { "Content-Type": "application/json"});
+      const deleteResponseData = await sendRequest(`/api/clients/${rowSelected}`, 'DELETE', null, { "Content-Type": "application/json"});
       if(deleteResponseData.status === 200){
         Swal.fire('Client deleted succesfully.', '', 'success');
-        const responseData = await sendRequest(`http://localhost:5000/api/clients/all?numberofresults=${numberOfResults}&page=${page}`);
+        const responseData = await sendRequest(`/api/clients/all?numberofresults=${numberOfResults}&page=${page}`);
 
         setClients(responseData.clients);
         setNumberOfPages(responseData.numberOfPages);
@@ -68,7 +68,7 @@ const Clients = () => {
   useEffect(() => {
     const fetchClients = async () => {
       try{
-        const responseData = await sendRequest(`http://localhost:5000/api/clients/all?numberofresults=${numberOfResults}&page=${page}`);
+        const responseData = await sendRequest(`/api/clients/all?numberofresults=${numberOfResults}&page=${page}`);
 
         setClients(responseData.clients);
         setNumberOfPages(responseData.numberOfPages);

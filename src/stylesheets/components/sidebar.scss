@@ -106,3 +106,32 @@
         }
     }
 }
+
+@media only screen and (max-width: 1024px) {
+    .sidebar-main__container{
+        position: fixed;
+        max-width: 50px;
+        padding: 5px;
+        .sidebar-logo{
+            display: none;
+        }
+
+        .sidebar-list{
+            margin-top: 0;
+            .sidebar-element{
+                a{
+                    margin-bottom: 20px;
+                    .sidebar-element__image{
+                        width: 40px;
+                        height: 40px;
+                        min-width: 40px;
+                        min-width: 40px;
+                    }
+                    .sidebar-element__content{
+                        display: none;
+                    }
+                }
+            }
+        }
+    }
+  }

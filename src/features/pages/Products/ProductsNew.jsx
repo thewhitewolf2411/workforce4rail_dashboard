@@ -45,7 +45,7 @@ function ProductsNew() {
 
     try {
       await sendRequest(
-        "http://localhost:5000/api/products",
+        "/api/products",
         "POST",
         body,
         { "Content-Type": "application/json" }

@@ -61,3 +61,22 @@
     opacity: 0;
     transition: all 200ms;
   }
+
+  
+
+@media only screen and (max-width: 1024px) {
+  .iframe__modal{
+      width: 100%;
+      max-width: 100%;
+      margin-bottom: 2em;
+      top: 2vh !important;
+      bottom: 2vh !important;
+      left: 2vh !important;
+      right: 2vh !important;
+
+      iframe{
+        width: 100% !important;
+        height: 600px !important;
+      }
+  }
+}

@@ -59,7 +59,7 @@ function ClientNew() {
 
     try {
       await sendRequest(
-        "http://localhost:5000/api/clients",
+        "/api/clients",
         "POST",
         body,
         { "Content-Type": "application/json" }

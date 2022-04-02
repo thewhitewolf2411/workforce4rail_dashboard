@@ -14,3 +14,26 @@
         gap: 2em;
     }
 }
+
+@media only screen and (max-width: 475px) {
+    .page__header{
+        flex-direction: column;
+
+        .buttons{
+            grid-template-columns: auto auto;
+            gap: 1em;
+        }
+    }
+  }
+
+  @media only screen and (min-width: 476px) and (max-width: 1024px) {
+    .page__header{
+        flex-direction: column;
+
+        .buttons{
+            grid-template-columns: auto auto auto;
+            gap: 1em;
+            justify-content: space-between;
+        }
+    }
+  }

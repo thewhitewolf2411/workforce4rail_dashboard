@@ -35,7 +35,7 @@ function Login() {
 
       try {
         const responseData = await sendRequest(
-          "http://localhost:5000/api/login",
+          "/api/login",
           "POST",
           JSON.stringify({
             email: formState.inputs.email.value,

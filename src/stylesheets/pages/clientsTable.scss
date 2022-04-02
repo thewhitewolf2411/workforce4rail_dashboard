@@ -67,3 +67,10 @@
         }
     }
 }
+
+@media only screen and (max-width: 1024px) {
+    .table__container{
+        width: 100%;
+        overflow-x: scroll;
+    }
+  }

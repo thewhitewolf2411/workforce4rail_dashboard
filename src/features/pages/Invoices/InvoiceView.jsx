@@ -51,7 +51,7 @@ function InvoiceView() {
   useEffect(() => {
     const fetchInvoice = async () => {
       try{
-        const responseData = await sendRequest(`http://localhost:5000/api/invoices/${id}`);
+        const responseData = await sendRequest(`/api/invoices/${id}`);
         setClient(responseData.client);
         setFormData({
             name: {
@@ -91,7 +91,7 @@ function InvoiceView() {
 
     const body = JSON.stringify({invoiceId: id});
 
-    const responseData = await sendRequest('http://localhost:5000/api/invoices/print', 'POST', body, { "Content-Type": "application/json" });
+    const responseData = await sendRequest('/api/invoices/print', 'POST', body, { "Content-Type": "application/json" });
     setFile(responseData.file);
   }
 
@@ -99,7 +99,7 @@ function InvoiceView() {
     <>
       {isLoading && <ActivityIndicator asOverlay />}
       <Button onClick={printInvoiceHandler}>Print invoice</Button>
-      {!!file && <Modal className="iframe__modal" show={!!file} onCancel={clearIframe}><iframe src={'data:application/pdf;base64,' + file} width="800px" height="1000px"></iframe></Modal>}
+      {!!file && <Modal header={"Invoice"} className="iframe__modal" show={!!file} onCancel={clearIframe}><iframe src={'data:application/pdf;base64,' + file} width="800px" height="1000px"></iframe></Modal>}
     </>
   );
 }

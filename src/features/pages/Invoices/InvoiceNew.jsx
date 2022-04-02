@@ -4,7 +4,7 @@ import Input from '../../../app/common/FormElements/Input';
 import Button from '../../../app/common/FormElements/Button';
 import add_btn from '../../../assets/add_btn.png';
 
-import { VALIDATOR_REQUIRE, VALIDATOR_MINLENGTH, VALIDATOR_EMAIL} from '../../../app/util/validators'; 
+import { VALIDATOR_REQUIRE, VALIDATOR_MINLENGTH, VALIDATOR_MIN} from '../../../app/util/validators'; 
 
 import { useForm, useHttpClient } from "../../../app/util/CustomHooks";
 import ErrorModal from "../../../app/common/ErrorModal";
@@ -17,6 +17,7 @@ function InvoiceNew() {
   const { isLoading, error, sendRequest, clearError } = useHttpClient();
   const [clients, setClients] = useState([]);
   const [products, setProducts] = useState([]);
+  const [numberOfInvoices, setNumberOfInvoices] = useState();
   const [selectedServices, setSelectedServices] = useState([]);
   const navigate = useNavigate();
 
@@ -24,11 +25,15 @@ function InvoiceNew() {
     {
       invoiceTitle: {
         value: "",
-        isValid: false
+        isValid: true
       },
       clientId: {
         value: "",
         isValid: false,
+      },
+      invoiceNote: {
+        value: "",
+        isValid: true,
       },
       services: {
         value: [],
@@ -41,15 +46,18 @@ function InvoiceNew() {
   const invoiceSubmitHandler = async (event) => {
     event.preventDefault();
 
+    console.log(formState.inputs);
+
     const body = JSON.stringify({
       invoiceTitle: formState.inputs.invoiceTitle.value,
+      invoiceNote: formState.inputs.invoiceNote.value,
       clientId: formState.inputs.clientId.value,
       services: formState.inputs.services.value,
     })
 
     try {
       await sendRequest(
-        "http://localhost:5000/api/invoices",
+        "/api/invoices",
         "POST",
         body,
         { "Content-Type": "application/json" }
@@ -81,6 +89,10 @@ function InvoiceNew() {
           value: formState.inputs.invoiceTitle.value,
           isValid: formState.inputs.invoiceTitle.isValid,
         },
+        invoiceNote: {
+          value: formState.inputs.invoiceNote.value,
+          isValid: formState.inputs.invoiceNote.isValid,
+        },
         clientId: {
           value: formState.inputs.clientId.value,
           isValid: formState.inputs.clientId.isValid,
@@ -110,6 +122,10 @@ function InvoiceNew() {
           value: formState.inputs.invoiceTitle.value,
           isValid: formState.inputs.invoiceTitle.isValid,
         },
+        invoiceNote: {
+          value: formState.inputs.invoiceNote.value,
+          isValid: formState.inputs.invoiceNote.isValid,
+        },
         clientId: {
           value: formState.inputs.clientId.value,
           isValid: formState.inputs.clientId.isValid,
@@ -126,7 +142,7 @@ function InvoiceNew() {
   useEffect(() => {
     const fetchClients = async () => {
       try{
-        const responseData = await sendRequest(`http://localhost:5000/api/clients/all`);
+        const responseData = await sendRequest(`/api/clients/all`);
 
         setClients(responseData.clients);
         
@@ -134,77 +150,127 @@ function InvoiceNew() {
     }
     const fetchProducts = async () => {
       try{
-        const responseData = await sendRequest(`http://localhost:5000/api/products/all`);
+        const responseData = await sendRequest(`/api/products/all`);
 
         setProducts(responseData.products);
         
       } catch(err){}
     }
+    const fetchNumberOfInvoices = async () => {
+      try{
+        const responseData = await sendRequest(`/api/invoices/invoicenumber`);
+
+        const invoicesResponse = responseData.invoiceNumber + 1;
+
+        setNumberOfInvoices(responseData.invoiceNumber);
+        setFormData(
+          {
+            invoiceTitle: {
+              value: responseData.invoiceNumber,
+              isValid: true
+            },
+            clientId: {
+              value: "",
+              isValid: false,
+            },
+            invoiceNote: {
+              value: "",
+              isValid: true,
+            },
+            services: {
+              value: [],
+              isValid: false,
+            }
+          },
+          false
+        );
+      } catch(err){}
+    }
 
     fetchClients();
     fetchProducts();
+    fetchNumberOfInvoices();
   }, [sendRequest]);
 
-  return (
-    <>
-      <ErrorModal error={error} onClear={clearError} />
-      <form className="place-form" onSubmit={invoiceSubmitHandler}>
-        {isLoading && <ActivityIndicator asOverlay />}
+  if(numberOfInvoices){
+    return (
+      <>
+        <ErrorModal error={error} onClear={clearError} />
+        <form className="place-form" onSubmit={invoiceSubmitHandler}>
+          {isLoading && <ActivityIndicator asOverlay />}
+  
+          <Input
+            id="invoiceTitle"
+            element="input"
+            type="number"
+            label="Invoice Number"
+            validators={[VALIDATOR_MIN(0)]}
+            errorText="Please enter a valid invoice number."
+            onInput={inputHandler}
+            disabled
+            initialValue={numberOfInvoices}
+          />
 
-        <Input
-          id="invoiceTitle"
-          element="input"
-          type="text"
-          label="Invoice Title"
-          validators={[VALIDATOR_REQUIRE()]}
-          errorText="Please enter a valid invoice name."
-          onInput={inputHandler}
-        />
+          <Input
+            id="invoiceNote"
+            element="input"
+            type="text"
+            label="Invoice Note"
+            validators={[VALIDATOR_MINLENGTH(0)]}
+            errorText=""
+            onInput={inputHandler}
+            initialValid={true}
+          />
+  
+          <div className="form-control">
+            <select id="clientId" defaultValue={''} onChange={(event) => inputHandler('clientId', event.target.value, true)}>
+                <option value={''} disabled>Please select a client</option>
+                {clients.map((client) => {
+                  return(<option key={client.id} value={client.id}>{client.name}</option>);
+                })}
+            </select>
+          </div>
+  
+          {selectedServices.map((selectedservice) => {
+            return(
+              <Card key={selectedservice.id} style={{marginBottom: '1em'}}>
+                <div className="form-control">
+                  <select id={`productId-${selectedservice.id}`} defaultValue={''} onChange={(event) => selectServiceHandler(event.target.value, selectedservice.id)}>
+                      <option value={''} disabled>Please select a product</option>
+                      {products.map((product) => {
+                        return(<option key={product.id} value={product.id}>{product.productName}</option>);
+                      })}
+                  </select>
+  
+                </div>
+                <div className="form-control">
+                  <input
+                    onChange={event => addQuantityHandler(event.target.value, selectedservice.id)}
+                    type={"number"}
+                  />
+                </div>
+  
+              </Card>
+            );
+          })}
+  
+          <div className="form-control form-control__center">
+            <h5>Add new service</h5>
+            <img src={add_btn} alt='Add new product' title='Add new product' onClick={addServiceHandler}/>
+          </div>
+  
+          <Button type="submit" disabled={!formState.isValid}>
+            CREATE INVOICE
+          </Button>
+        </form>
+      </>
+    );
+  }
 
-        <div className="form-control">
-          <select id="clientId" defaultValue={''} onChange={(event) => inputHandler('clientId', event.target.value, true)}>
-              <option value={''} disabled>Please select a client</option>
-              {clients.map((client) => {
-                return(<option key={client.id} value={client.id}>{client.name}</option>);
-              })}
-          </select>
-        </div>
+  return(
+      <ActivityIndicator asOverlay />
+  )
 
-        {selectedServices.map((selectedservice) => {
-          return(
-            <Card key={selectedservice.id} style={{marginBottom: '1em'}}>
-              <div className="form-control">
-                <select id={`productId-${selectedservice.id}`} defaultValue={''} onChange={(event) => selectServiceHandler(event.target.value, selectedservice.id)}>
-                    <option value={''} disabled>Please select a product</option>
-                    {products.map((product) => {
-                      return(<option key={product.id} value={product.id}>{product.productName}</option>);
-                    })}
-                </select>
-
-              </div>
-              <div className="form-control">
-                <input
-                  onChange={event => addQuantityHandler(event.target.value, selectedservice.id)}
-                  type={"number"}
-                />
-              </div>
-
-            </Card>
-          );
-        })}
-
-        <div className="form-control form-control__center">
-          <h5>Add new service</h5>
-          <img src={add_btn} alt='Add new product' title='Add new product' onClick={addServiceHandler}/>
-        </div>
-
-        <Button type="submit" disabled={!formState.isValid}>
-          CREATE INVOICE
-        </Button>
-      </form>
-    </>
-
-  );
 }
 
 export default InvoiceNew;

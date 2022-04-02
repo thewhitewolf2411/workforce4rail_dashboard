@@ -53,7 +53,7 @@ function ClientView() {
   useEffect(() => {
     const fetchClients = async () => {
       try{
-        const responseData = await sendRequest(`http://localhost:5000/api/clients/${id}`);
+        const responseData = await sendRequest(`/api/clients/${id}`);
         setClient(responseData.client);
         setFormData({
             name: {
@@ -103,7 +103,7 @@ function ClientView() {
 
     try {
       await sendRequest(
-        `http://localhost:5000/api/clients/${id}`,
+        `/api/clients/${id}`,
         "PATCH",
         body,
         { "Content-Type": "application/json" }

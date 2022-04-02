@@ -122,7 +122,7 @@ function Dashboard() {
   useEffect(() => {
     const fetchClients = async () => {
       try{
-        const responseData = await sendRequest(`http://localhost:5000/api/invoices/all`);
+        const responseData = await sendRequest(`/api/invoices/all`);
 
         let paidCounter = 0;
         let paidThisMonthCounter = 0;
